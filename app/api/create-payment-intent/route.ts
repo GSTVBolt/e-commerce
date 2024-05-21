@@ -93,4 +93,6 @@ export async function POST(req: Request) {
 
         return NextResponse.json({ paymentIntent })
     }
+
+    return NextResponse.error()
 }
