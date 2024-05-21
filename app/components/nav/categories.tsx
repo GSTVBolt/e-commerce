@@ -4,6 +4,7 @@ import { categories } from "@/utils/categories";
 import { Container } from "../container";
 import { Category } from "./category";
 import { usePathname, useSearchParams } from "next/dist/client/components/navigation";
+import { Suspense } from "react";
 
 export function Categories() {
 
@@ -22,12 +23,14 @@ export function Categories() {
             <Container>
                 <div className="pt-4 flex flex-row items-center justify-between overflow-x-auto">
                     {categories.map((item) => (
-                       <Category 
-                       key={item.label}
-                       label={item.label}
-                       icon={item.icon}
-                       selected={category === item.label || (category === null && item.label === 'Todos')}
-                       />
+                        <Suspense>
+                            <Category
+                                key={item.label}
+                                label={item.label}
+                                icon={item.icon}
+                                selected={category === item.label || (category === null && item.label === 'Todos')}
+                            />
+                        </Suspense>
                     ))}
                 </div>
             </Container>
